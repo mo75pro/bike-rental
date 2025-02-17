@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Commandes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #140A0A;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-search, .btn-cancel {
+            background-color: #A52A2A;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .btn-search:hover, .btn-cancel:hover {
+            background-color: #8B1A1A;
+        }
+        .order-list {
+            margin-top: 20px;
+        }
+        .order-item {
+            background-color: #1E1E1E;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .order-details {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1E1E1E;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Great Coffee</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">PRODUCTS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="account.html">ACCOUNT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">My Order</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Mes Commandes</h1>
+
+        <!-- Barre de recherche par numéro de commande -->
+        <input type="text" class="form-control" id="order-id" placeholder="Rechercher par numéro de commande">
+        <button class="btn-search" onclick="searchOrder()">Rechercher</button>
+
+        <!-- Message si aucune commande n'est enregistrée -->
+        <p id="no-orders-message" style="color: yellow; font-size: 1.2rem; margin-top: 20px; display: none;">⚠ Aucune commande enregistrée.</p>
+
+        <!-- Liste des commandes -->
+        <div class="order-list" id="order-list"></div>
+    </div>
+
+    <script>
+        function loadOrders() {
+            let orders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+            let orderList = document.getElementById("order-list");
+
+            orderList.innerHTML = "";
+
+            if (orders.length === 0) {
+                document.getElementById("no-orders-message").style.display = "block";
+                return;
+            } else {
+                document.getElementById("no-orders-message").style.display = "none";
+            }
+
+            orders.forEach(order => {
+                let orderDiv = document.createElement("div");
+                orderDiv.classList.add("order-item");
+                orderDiv.innerHTML = `
+                    <h4>Commande : <strong>${order.orderId}</strong></h4>
+                    <p><strong>Nom :</strong> ${order.name} ${order.prenom}</p>
+                    <p><strong>Email :</strong> ${order.email}</p>
+                    <p><strong>Date :</strong> ${order.date ? new Date(order.date).toLocaleString() : "Date inconnue"}</p>
+                    <h5>Total : ${order.totalPrice} $</h5>
+                    <button class="btn-search" onclick="toggleDetails('${order.orderId}')">Voir détails</button>
+                    <button class="btn-cancel" onclick="cancelOrder('${order.orderId}')">Annuler la commande</button>
+                    <div class="order-details" id="details-${order.orderId}"></div>
+                `;
+                orderList.appendChild(orderDiv);
+            });
+        }
+
+        function toggleDetails(orderId) {
+            let detailsDiv = document.getElementById(`details-${orderId}`);
+            if (detailsDiv.style.display === "none" || detailsDiv.innerHTML === "") {
+                showOrderDetails(orderId, detailsDiv);
+            } else {
+                detailsDiv.style.display = "none";
+            }
+        }
+
+        function showOrderDetails(orderId, detailsDiv) {
+            let orders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+            let order = orders.find(o => o.orderId === orderId);
+
+            if (!order) {
+                detailsDiv.innerHTML = "<p>Commande introuvable.</p>";
+                return;
+            }
+
+            let itemsHtml = "<h5>Produits commandés :</h5><ul>";
+            order.cart.forEach(item => {
+                itemsHtml += `<li>${item.name} (x${item.quantity}) - ${(item.price * item.quantity).toFixed(2)}$</li>`;
+            });
+            itemsHtml += "</ul>";
+
+            detailsDiv.innerHTML = itemsHtml;
+            detailsDiv.style.display = "block";
+        }
+
+        function cancelOrder(orderId) {
+            if (!confirm("Êtes-vous sûr de vouloir annuler cette commande ? Cette action est irréversible.")) {
+                return;
+            }
+
+            let orders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+            let updatedOrders = orders.filter(order => order.orderId !== orderId);
+
+            localStorage.setItem("orderHistory", JSON.stringify(updatedOrders));
+            alert("Commande annulée avec succès !");
+            loadOrders(); // Recharge la liste des commandes
+        }
+
+        function searchOrder() {
+            let orderId = document.getElementById("order-id").value.trim();
+            let orders = document.querySelectorAll(".order-item");
+            let found = false;
+
+            orders.forEach(order => {
+                if (order.innerHTML.includes(orderId)) {
+                    order.style.display = "block";
+                    found = true;
+                } else {
+                    order.style.display = "none";
+                }
+            });
+
+            document.getElementById("no-orders-message").style.display = found ? "none" : "block";
+        }
+
+        document.addEventListener("DOMContentLoaded", loadOrders);
+    </script>
+
+</body>
+</html>

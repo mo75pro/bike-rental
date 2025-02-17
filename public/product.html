@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Produits - Great Coffee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #140A0A;
+            color: white;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #1E1E1E;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: red;
+            font-size: 1.5rem;
+        }
+        .product-category {
+            background-color: #5E3B3B;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #5E3B3B;
+        }
+        .product-item span {
+            flex: 1;
+            text-align: left;
+        }
+        .quantity {
+            width: 50px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        .btn-add {
+            background-color: #A52A2A;
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+        .btn-add:hover {
+            background-color: #8B1A1A;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">LOGO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">PRODUCTS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="account.html">ACCOUNT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">My Order</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="mt-4">NOS PRODUITS</h1>
+
+    <div class="container">
+        <div class="product-category">Café</div>
+        <div class="product-item">
+            <span class="product-name">Café Arabica 250g</span>
+            <span class="product-price">9.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-arabica1" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Café Arabica 250g', 9.99, 'qty-arabica1')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Café Arabica 500g</span>
+            <span class="product-price">15.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-arabica2" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Café Arabica 500g', 15.99, 'qty-arabica2')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Expresso 250g</span>
+            <span class="product-price">4.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-expresso1" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Expresso 250g', 4.99, 'qty-expresso1')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Expresso 500g</span>
+            <span class="product-price">7.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-expresso2" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Expresso 500g', 7.99, 'qty-expresso2')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Café à Grain 250g</span>
+            <span class="product-price">9.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-grain1" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Café à Grain 250g', 9.99, 'qty-grain1')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Café à Grain 500g</span>
+            <span class="product-price">15.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-grain2" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Café à Grain 500g', 15.99, 'qty-grain2')">Ajouter</button>
+            </div>
+        </div>
+        
+        <div class="product-category">Thé</div>
+        <div class="product-item">
+            <span class="product-name">Lipton (100 sachets)</span>
+            <span class="product-price">9.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-lipton" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Lipton (100 sachets)', 9.99, 'qty-lipton')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Thé Vert (100 sachets)</span>
+            <span class="product-price">9.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-vert" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Thé Vert (100 sachets)', 15.99, 'qty-vert')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Thé Noir (100 sachets)</span>
+            <span class="product-price">9.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-noir" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Thé Noir (100 sachets)', 9.99, 'qty-noir')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Thé Blanc (100 sachets)</span>
+            <span class="product-price">12.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-blanc" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Thé Blanc (100 sachets)', 15.99, 'qty-blanc')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Infusion Camomille (50 sachets)</span>
+            <span class="product-price">7.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-infusion" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Infusion Camomille (50 sachets)', 15.99, 'qty-infusion')">Ajouter</button>
+            </div>
+        </div>
+        
+        <div class="product-category">Accessoires</div>
+        <div class="product-item">
+            <span class="product-name">Moulin à café</span>
+            <span class="product-price">249.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-moulin" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Moulin à café', 249.99, 'qty-moulin')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Machine à Café</span>
+            <span class="product-price">499.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-machine" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Machine à Café', 499.99, 'qty-machine')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Machine à Café Manuelle</span>
+            <span class="product-price">149.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-manual" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Machine à Café Manuelle', 149.99, 'qty-manual')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Tasses (Lot de 6)</span>
+            <span class="product-price">19.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-tasse" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Tasses (Lot de 6)', 19.99, 'qty-tasse')">Ajouter</button>
+            </div>
+        </div>
+        <div class="product-item">
+            <span class="product-name">Cuillères à café (Lot de 6)</span>
+            <span class="product-price">5.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-lot" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Cuillères à café (Lot de 6)', 5.99, 'qty-lot')">Ajouter</button>
+            </div>
+        </div>
+        
+        <div class="product-category">Chocolats & Gourmandises</div>
+        <div class="product-item">
+            <span class="product-name">Chocolat Noir 70% (100g)</span>
+            <span class="product-price">3.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-chocolatNoir" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Chocolat Noir 70% (100g)', 3.99, 'qty-chocolatNoir')">Ajouter</button>
+            </div>
+        </div><div class="product-item">
+            <span class="product-name">Chocolat au Lait (100g)</span>
+            <span class="product-price">3.49$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-chocolatLait" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Chocolat au Lait (100g)', 3.49, 'qty-chocolatLait')">Ajouter</button>
+            </div>
+        </div><div class="product-item">
+            <span class="product-name">Biscuits au Café</span>
+            <span class="product-price">5.99$</span>
+            <div class="product-controls">
+                <input type="number" class="quantity" id="qty-biscuit" min="1" value="1">
+                <button class="btn-add" onclick="addToCart('Biscuits au Café', 5.99, 'qty-biscuit')">Ajouter</button>
+            </div>
+        </div>
+    </div>
+    <!-- Panier -->
+    <div class="cart-container" id="cart">
+        <h2>Mon Panier</h2>
+        <div id="cart-items"></div>
+        <h3>Sous-Total : <span id="total-price">0.00</span> $</h3>
+    </div>
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let totalPrice = parseFloat(localStorage.getItem("totalPrice")) || 0;
+
+        function saveCart() {
+            localStorage.setItem("cart", JSON.stringify(cart));
+            localStorage.setItem("totalPrice", totalPrice.toFixed(2));
+        }
+
+        
+        function addToCart(name, price, quantityId) {
+            let quantity = parseInt(document.getElementById(quantityId).value);
+            if (quantity < 1) return;
+
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ name, price, quantity });
+            }
+
+            totalPrice += price * quantity;
+            saveCart();
+            updateCart();
+            alert(name + " ajouté au panier !");
+        }
+
+        function removeFromCart(index) {
+            totalPrice -= cart[index].price * cart[index].quantity;
+            cart.splice(index, 1);
+            saveCart();
+            updateCart();
+            
+        }
+
+        function updateCart() {
+            let cartItemsContainer = document.getElementById("cart-items");
+            let totalContainer = document.getElementById("total-price");
+
+            cartItemsContainer.innerHTML = "";
+            cart.forEach((item, index) => {
+                let cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <span>${item.name} (x${item.quantity}) - ${(item.price * item.quantity).toFixed(2)}$</span>
+                    <button class="btn-remove" onclick="removeFromCart(${index})">X</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            totalContainer.textContent = totalPrice.toFixed(2);
+        }
+
+        // Fonction pour valider le panier
+        function validateCart() {
+            if (cart.length === 0) {
+                alert("Votre panier est vide !");
+                return;
+            }
+
+            localStorage.setItem("lastOrder", JSON.stringify(cart));
+            window.location.href = "confirmation.html";
+        }
+
+        // Restaurer le panier sauvegardé quand la page charge
+        window.onload = updateCart;
+
+    </script>
+
+    <!-- Bouton pour valider le panier -->
+    <div class="checkout-container">
+        <button class="btn-checkout" onclick="validateCart()">Valider mon panier</button>
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

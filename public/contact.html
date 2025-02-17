@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Localisation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <style>
+        body {
+            background-color: #140A0A;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        #map {
+            height: 500px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1E1E1E;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Great Coffee</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">PRODUCTS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="account.html">ACCOUNT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">My Order</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteneur principal -->
+    <div class="container">
+         <!-- Contacts -->
+         <div class="contact-card">
+            <h3>📞 Téléphone</h3>
+            <p>Service Client : +1 819-555-1234</p>
+            <p>Support Technique : +1 819-555-5678</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>📧 Email</h3>
+            <p>Support : support@greatcoffee.com</p>
+            <p>Partenariats : partenariats@greatcoffee.com</p>
+        </div>
+        <h2>Nos Usines de fabrication</h2>
+        <p>Découvrez les emplacements des usines de nos fournisseurs</p>
+        
+        <!-- Carte Leaflet -->
+        <div id="map"></div>
+    </div>
+
+    <!-- Ajout de Leaflet.js -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialisation de la carte
+        var map = L.map('map').setView([20, 10], 2); // Vue initiale centrée sur le monde
+
+        // Ajout d'un fond de carte OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Ajout des marqueurs pour les usines
+        var locations = [
+            { name: "Nestlé Suisse - Siège", lat: 46.4643, lon: 6.8402, desc: "Siège social de Nestlé, Vevey 🇨🇭" },
+            { name: "Nestlé USA - Usine", lat: 41.3834, lon: -81.4401, desc: "Usine Nestlé à Solon, Ohio 🇺🇸" },
+            { name: "Usine de Thé - Sri Lanka", lat: 7.2906, lon: 80.6337, desc: "Plantation de thé à Kandy, Ceylan 🇱🇰" }
+        ];
+
+        locations.forEach(loc => {
+            L.marker([loc.lat, loc.lon]).addTo(map)
+                .bindPopup(`<b>${loc.name}</b><br>${loc.desc}`);
+        });
+
+    </script>
+</body>
+</html>

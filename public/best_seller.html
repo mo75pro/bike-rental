@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meilleures Ventes - Great Coffee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #140A0A;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .product {
+            background-color: #1E1E1E;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .product h3 {
+            color: #FFD700;
+        }
+        .rating {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+        .btn-add {
+            background-color: #A52A2A;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn-add:hover {
+            background-color: #8B1A1A;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1E1E1E;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Great Coffee</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">PRODUCTS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="account.html">ACCOUNT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">My Order</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>☕ Nos Meilleures Ventes</h1>
+        <p>Découvrez les cafés préférés de nos clients avec les meilleures évaluations ⭐⭐⭐⭐⭐</p>
+
+        <div class="product">
+            <h3>Café Arabica</h3>
+            <p>Un café doux et parfumé, idéal pour les amateurs de saveurs raffinées.</p>
+            <p class="rating">⭐⭐⭐⭐⭐ (4.9/5)</p>
+            <button class="btn-add">Ajouter au panier</button>
+        </div>
+
+        <div class="product">
+            <h3>Expresso</h3>
+            <p>Un café corsé avec une touche de chocolat noir, parfait pour les vrais amateurs d’expresso.</p>
+            <p class="rating">⭐⭐⭐⭐⭐ (4.8/5)</p>
+            <button class="btn-add">Ajouter au panier</button>
+        </div>
+
+        <div class="product">
+            <h3>Nescafé</h3>
+            <p>Un café 100% bio et issu du commerce équitable, respectueux des producteurs et de l’environnement.</p>
+            <p class="rating">⭐⭐⭐⭐⭐ (4.7/5)</p>
+            <button class="btn-add">Ajouter au panier</button>
+        </div>
+    </div>
+
+</body>
+</html>
